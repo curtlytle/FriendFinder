@@ -19,7 +19,7 @@ module.exports = function (app) {
     // ---------------------------------------------------------------------------
 
     app.get("/api/friends", function (req, res) {
-        res.json(tableData);
+        res.json(friends);
     });
 
     // API POST Requests
@@ -29,12 +29,6 @@ module.exports = function (app) {
     // (ex. User fills out a reservation request... this data is then sent to the server...
     // Then the server saves the data to the tableData array)
     // ---------------------------------------------------------------------------
-
-    app.post("/api/tables", function (req, res) {
-        // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
-        // It will do this by sending out the value "true" have a table
-        // req.body is available since we're using the body-parser middleware
-    });
 
     // ---------------------------------------------------------------------------
     // I added this below code so you could clear out the table while working with the functionality.
