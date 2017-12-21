@@ -5,6 +5,8 @@
     <title>Survey Page</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
@@ -44,35 +46,20 @@
 
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <!-- about  -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Survey</h4>
-                </div>
-                <form role="form">
-                    <div class="dropdown">
-                        <div class="form-group">
-                            <label for="sel1">Select list:</label>
-                            <select class="form-control" id="sel1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary submit">Submit</button>
-                </form>
-
-            </div>
-        </div>
-
-    </div>
+    <h3><strong>Question 1</strong></h3>
+    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+    <form role="form">
+    <select class="js-example-basic-single" name="q1" id="q1">
+        <option value=""></option>
+        <option value="1">1 (Strongly Disagree)</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 (Strongly Agree)</option>
+    </select>
+    <button type="submit" class="btn btn-primary submit">Submit</button>
+    </form>
 </div>
->
 
 
 <footer class="footer">
