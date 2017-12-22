@@ -5,10 +5,95 @@
     <title>Survey Page</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -32,8 +117,8 @@
                 <div class="panel-body">
                     <form role="form">
                         <div class="form-group">
-                            <label for="user-name">Name (Required)</label>
-                            <input type="text" class="form-control" id="user-name">
+                            <label for="friend-name">Name (Required)</label>
+                            <input type="text" class="form-control" id="friend-name">
                         </div>
                         <div class="form-group">
                             <label for="photo-link">Link to Photo Image (Required)</label>
@@ -46,28 +131,58 @@
 
         </div>
     </div>
-    <h3><strong>Question 1</strong></h3>
-    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
     <form role="form">
-    <select class="js-example-basic-single" name="q1" id="q1">
-        <option value=""></option>
-        <option value="1">1 (Strongly Disagree)</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5 (Strongly Agree)</option>
-    </select>
-    <button type="submit" class="btn btn-primary submit">Submit</button>
+        <h3><strong>Question 1</strong></h3>
+        <h4>You like football.</h4>
+        <select class="js-example-basic-single" name="q1" id="q1">
+            <option value="0">Select One</option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+        <h3><strong>Question 2</strong></h3>
+        <h4>You love the Utes.</h4>
+        <select class="js-example-basic-single" name="q2" id="q2">
+            <option value="0">Select One</option>
+            <option value="1">1 (Strongly Disagree)</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5 (Strongly Agree)</option>
+        </select>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <button type="submit" class="btn btn-primary submit">Submit</button>
+            </div>
+        </div>
     </form>
+
+    <footer class="footer">
+        <div class="container">
+            <p><a href="/api/friends">API Friend Link</a> | <a href="https://github.com/curtlytle/FriendFinder">GitHub
+                Repo</a></p>
+        </div>
+    </footer>
+
 </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
 
-
-<footer class="footer">
-    <div class="container">
-        <p><a href="/api/friends">API Friend Link</a> | <a href="https://github.com/curtlytle/FriendFinder">GitHub
-            Repo</a></p>
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Compatible Friend</h2>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <h3>Thank you!</h3>
+        </div>
     </div>
-</footer>
 
 </div>
 
@@ -76,7 +191,26 @@
 
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
+    // Get the modal
+    var modal = document.getElementById('myModal');
 
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
     // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
     // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
     // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
@@ -84,11 +218,18 @@
 
     $(".submit").on("click", function (event) {
         event.preventDefault();
+        showFriends();
 
+        var qAnswers = [];
+        for (var i = 1; i < 3; i++) {
+            var obj = "q" + i;
+            qAnswers.push(getScore(obj));
+        }
         // Here we grab the form elements
         var userInfo = {
-            userName: $("#user-name").val().trim(),
-            photoLink: $("#photo-link").val().trim()
+            "friendName": $("#friend-name").val().trim(),
+            "photoLink": $("#photo-link").val().trim(),
+            "answers": qAnswers
         };
 
         console.log(userInfo);
@@ -102,16 +243,44 @@
             function (data) {
                 // If a table is available... tell user they are booked.
                 if (data) {
-                    alert("Yay! You are added as a friend!");
+                    //alert("Yay! You are added as a friend!");
                 } else {
-                    alert("Sorry you are on the wait list");
+                    //alert("Sorry you are on the wait list");
                 }
 
                 // Clear the form when submitting
-                $("#user-name").val("");
+                $("#friend-name").val("");
                 $("#photo-link").val("");
             });
+        var $ap = $("<div>");
+        $ap.html("<p>Curt TESTING 123</p>");
+        $(".modal-body").append($ap);
 
+        modal.style.display = "block";
     });
+
+    function showFriends() {
+        var currentURL = window.location.origin;
+        $.ajax({url: currentURL + "/api/friends", method: "GET"}).done(function (friendData) {
+            // Here we are logging the URL so we have access to it for troubleshooting
+            console.log("------------------------------------");
+            console.log("URL: " + currentURL + "/api/friends");
+            console.log("------------------------------------");
+
+            // Here we then log the NYTData to console, where it will show up as an object.
+            console.log(friendData);
+            console.log("------------------------------------");
+
+            // Loop through and display each of the customers
+            for (var i = 0; i < friendData.length; i++) {
+                console.log("Friend name: " + friendData[i].friendName);
+            }
+            console.log("------------------------------------");
+        });
+    }
+
+    function getScore(selId) {
+        return parseInt($("#" + selId).val());
+    }
 
 </script>
