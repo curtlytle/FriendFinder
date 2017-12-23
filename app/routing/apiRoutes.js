@@ -35,7 +35,8 @@ module.exports = function (app) {
         // It will do this by sending out the value "true" have a table
         // req.body is available since we're using the body-parser middleware
         friendData.push(req.body);
-        res.json(true);
+        // TODO clytle check array, then post
+        res.json(friendData[0]);
     });
     // ---------------------------------------------------------------------------
     // I added this below code so you could clear out the table while working with the functionality.
