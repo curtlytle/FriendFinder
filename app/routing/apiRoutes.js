@@ -6,7 +6,6 @@
 
 var friendData = require("../data/friends");
 
-
 // ===============================================================================
 // ROUTING
 // ===============================================================================
@@ -44,6 +43,33 @@ module.exports = function (app) {
 
     app.post("/api/clear", function () {
         // Empty out the arrays of data
-
+        friendData = [];
     });
+
+    function findFriend(user) {
+        var goodFriendIndex = -1;
+        var bestScore = 100;
+        for (var i = 0; i < friendData.length; i++) {
+            var thisScore = 0;
+            for (var j = 0; j < 10; j++) {
+                thisScore += Math.abs(user.answers[j] - friendData.answers[j]);
+            }
+            if (thisScore < bestScore) {
+                goodFriendIndex = i;
+                bestScore = thisScore;
+            }
+        }
+
+        if (goodFriendIndex < 0) {
+            var empty =
+                {
+                    friendName: "No Friends are in our data yet, you are the first.",
+                    photoLink: "",
+                    answers: [1, 1, 1, 1, 1, 1, 7, 8, 9, 10]
+                };
+            return empty;
+        } else {
+            return friendData[goodFriendIndex];
+        }
+    }
 };
