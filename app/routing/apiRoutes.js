@@ -33,26 +33,31 @@ module.exports = function (app) {
         // Note the code here. Our "server" will respond to requests and let users know if they have a table or not.
         // It will do this by sending out the value "true" have a table
         // req.body is available since we're using the body-parser middleware
-        friendData.push(req.body);
-        // TODO clytle check array, then post
-        res.json(friendData[0]);
+        var user = {
+            friendName: req.body.friendName,
+            photoLink: req.body.photoLink,
+            answers: req.body["answers[]"]
+        };
+        var closestFriend = findFriend(user, friendData);
+        friendData.push(user);
+        res.json(closestFriend);
     });
     // ---------------------------------------------------------------------------
     // I added this below code so you could clear out the table while working with the functionality.
     // Don"t worry about it!
 
-    app.post("/api/clear", function () {
+    app.post("/api/clear", function (req, res) {
         // Empty out the arrays of data
         friendData = [];
     });
 
-    function findFriend(user) {
+    function findFriend(user, farray) {
         var goodFriendIndex = -1;
         var bestScore = 100;
-        for (var i = 0; i < friendData.length; i++) {
+        for (var i = 0; i < farray.length; i++) {
             var thisScore = 0;
             for (var j = 0; j < 10; j++) {
-                thisScore += Math.abs(user.answers[j] - friendData.answers[j]);
+                thisScore += Math.abs(user.answers[j] - farray[i].answers[j]);
             }
             if (thisScore < bestScore) {
                 goodFriendIndex = i;
@@ -69,7 +74,7 @@ module.exports = function (app) {
                 };
             return empty;
         } else {
-            return friendData[goodFriendIndex];
+            return farray[goodFriendIndex];
         }
     }
 };

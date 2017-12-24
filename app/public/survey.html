@@ -301,18 +301,21 @@
         event.preventDefault();
         showFriends();
 
-        var qAnswers = [];
-        for (var i = 1; i < 3; i++) {
-            var obj = "q" + i;
-            qAnswers.push(getScore(obj));
-        }
         // Here we grab the form elements
         var userInfo = {
-            "friendName": $("#friend-name").val().trim(),
-            "photoLink": $("#photo-link").val().trim(),
-            "answers": qAnswers
+            friendName: $("#friend-name").val().trim(),
+            photoLink: $("#photo-link").val().trim(),
+            answers: []
         };
 
+        for (var i = 1; i < 11; i++) {
+            var scoreId = "q" + i;
+            var scorestr = $("#" + scoreId).val().trim();
+            var score = parseInt(scorestr);
+            userInfo.answers.push(score);
+        }
+
+        console.log("User Info object: ");
         console.log(userInfo);
 
         // This line is the magic. It"s very similar to the standard ajax function we used.
@@ -328,6 +331,7 @@
                 } else {
                     //alert("Sorry you are on the wait list");
                 }
+                $(".modal-body").empty();
                 var $ap = $("<div>");
                 var msg = data.friendName;
                 $ap.html("<p>You are compatible with " + msg + " </p>");
@@ -359,10 +363,6 @@
             }
             console.log("------------------------------------");
         });
-    }
-
-    function getScore(selId) {
-        return parseInt($("#" + selId).val());
     }
 
 </script>
