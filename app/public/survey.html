@@ -121,7 +121,7 @@
                             <input type="text" class="form-control" id="friend-name" required>
                         </div>
                         <div class="form-group">
-                            <label for="photo-link">Link to Photo Image (Required)</label>
+                            <label for="photo-link">Link to Photo Image</label>
                             <input type="text" class="form-control" id="photo-link">
                         </div>
                     </form>
@@ -339,6 +339,9 @@
                 var $ap = $("<div>");
                 var msg = data.friendName;
                 $ap.html("<p>You are compatible with " + msg + " </p>");
+                if (data.photoLink.length > 0) {
+                   $ap.prepend($('<img>', {id: 'Imgid', src: data.photoLink}));
+                }
                 $(".modal-body").append($ap);
 
                 modal.style.display = "block";
